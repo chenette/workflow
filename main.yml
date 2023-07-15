@@ -1,0 +1,22 @@
+on:
+  workflow_call:
+    inputs:
+      environment: { required: true, type: string }
+      build_app: { type: boolean, default: true }
+      deploy_infra: { type: boolean, default: false }
+      deploy_app: { type: boolean, default: false }
+
+jobs:
+  build_app:
+    if: inputs.build_app
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v3
+
+  deploy_infra:
+    if: inputs.deploy_infra
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v3
