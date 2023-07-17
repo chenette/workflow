@@ -1,5 +1,5 @@
 ## WHAT
-this is a generic, reusable GitHub workflow that aims to address ~80% of modern application deployment use cases
+this is a generic, reusable GitHub workflow that aims to address ~80% of modern, cloud native application deployment use cases
 
 ## WHY
 standardized workflows (i.e., CI/CD pipelines) help ensure consistancy and ease of use
@@ -18,7 +18,7 @@ use it like this
 ``` yaml
 jobs:
   <your-job-here>:
-    uses: chenette/workflow/main.yml@main
+    uses: chenette/workflow/.github/workflows/azure.yml@main
     with:
       environment: <your-environment-here>
       ...
