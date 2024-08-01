@@ -4,11 +4,7 @@ on:
 jobs:  
   lint_code:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: read
-      # To report GitHub Actions status checks
-      statuses: write
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
