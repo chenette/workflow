@@ -5,11 +5,11 @@ jobs:
   scan_code:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "$ABC"
+      - run: echo "$SONAR_TOKEN"
         env:
-          ABC: ${{ vars.ABC }}
+          SONAR_TOKEN: ${{ vars.SONAR_TOKEN }}
       # IMPORTANT: https://github.com/marketplace/actions/sonarcloud-scan#usage
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@v2
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ vars.SONAR_TOKEN }}
