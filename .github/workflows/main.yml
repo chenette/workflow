@@ -1,0 +1,37 @@
+on:
+  workflow_call:
+    inputs:
+      environment:           { required: true, type: string }
+      application_type:      { required: true, type: string }
+      lint_code:             { type: boolean, default: true }
+      scan_code:             { type: boolean, default: true }
+      build_application:     { type: boolean, default: true }
+      deploy_application:    { type: boolean, default: false }
+      deploy_infrastructure: { type: boolean, default: false }
+      iac_tool:              { type: string, default: terraform } # quotes needed?
+
+jobs:
+  lint_code:
+    if: inputs.lint_code
+    uses: ./.github/workflows/lint-code.yml
+
+  scan_code:
+    if: inputs.scan_code
+    uses: ./.github/workflows/scan-code.yml
+  
+  #compile_code? or build_application?
+  build_application:
+    if: inputs.build_application
+    uses: ./.github/workflows/build-application.yml
+    with:
+      environment: ${{ inputs.environment }}
+      application_type: ${{ inputs.application_type }}
+
+  deploy_infrastructure:
+    if: inputs.deploy_infrastructure
+    uses: ./.github/workflows/deploy-infrastructure.yml
+    with:
+      environment: ${{ inputs.environment }}
+      iac_tool: ${{ inputs.iac_tool }}
+      
+      

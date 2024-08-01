@@ -1,0 +1,12 @@
+on:
+  workflow_call:
+  
+jobs:  
+  scan_code:
+    runs-on: ubuntu-latest
+    steps:
+      # IMPORTANT: https://github.com/marketplace/actions/sonarcloud-scan#usage
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

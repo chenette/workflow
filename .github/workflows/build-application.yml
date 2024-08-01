@@ -1,0 +1,12 @@
+on:
+  workflow_call:
+    inputs:
+      environment:           { required: true, type: string }
+      application_type:      { type: string }
+
+jobs:  
+  build_application:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4

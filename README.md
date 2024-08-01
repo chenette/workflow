@@ -13,13 +13,17 @@ many decisions were made to enforce devops best practies. these decisions, and t
 decision: an environment is required in order to accomplish anything
 reason: as many "quality gates" can be enabled with environments in GitHub, environments are required in order to prevent malicious or accidental deployments without explicit approval.
 
+## HOW
 use it like this 
 
 ``` yaml
 jobs:
   <your-job-here>:
-    uses: chenette/workflow/.github/workflows/azure.yml@main
+    uses: chenette/workflow/.github/workflows/main.yml@main
     with:
       environment: <your-environment-here>
+      application_type: <your-application-language-here>
       ...
 ```
+
+For working examples, see [using-workflow]()

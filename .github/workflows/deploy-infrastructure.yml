@@ -1,0 +1,17 @@
+on:
+  workflow_call:
+    inputs:
+      environment:           { required: true, type: string }
+      iac_tool:              { type: string, default: terraform } # quotes needed?
+  
+jobs:
+  deploy_infrastructure:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.0

@@ -1,0 +1,10 @@
+on:
+  workflow_call:
+  
+jobs:  
+  build_application:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: super-linter/super-linter@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
