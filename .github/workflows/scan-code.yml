@@ -1,13 +1,13 @@
 on:
   workflow_call:
-  
+
 jobs:  
   scan_code:
     runs-on: ubuntu-latest
     steps:
       - run: echo "$ABC"
         env:
-          ABC: ${{ env.ABC }}
+          ABC: ${{ vars.ABC }}
       # IMPORTANT: https://github.com/marketplace/actions/sonarcloud-scan#usage
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@v2
