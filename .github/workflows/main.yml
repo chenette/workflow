@@ -10,7 +10,7 @@ on:
       deploy_infrastructure: { type: boolean, default: false }
       iac_tool:              { type: string, default: terraform } # quotes needed?
     secrets:
-      SONAR_TOKEN:          { required: true }
+      SONAR_TOKEN:          { required: true } # *** ARE ALL OF THESE NEEDED?
 
 jobs:
   lint_code:
@@ -21,7 +21,7 @@ jobs:
     if: inputs.scan_code
     uses: ./.github/workflows/scan-code.yml
     secrets:
-       token: ${{ secrets.SONAR_TOKEN }}
+       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # *** ARE ALL OF THESE NEEDED?
   
   #compile_code? or build_application?
   build_application:
