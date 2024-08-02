@@ -20,6 +20,8 @@ jobs:
   scan_code:
     if: inputs.scan_code
     uses: ./.github/workflows/scan-code.yml
+    secrets:
+       token: ${{ secrets.SONAR_TOKEN }}
   
   #compile_code? or build_application?
   build_application:
