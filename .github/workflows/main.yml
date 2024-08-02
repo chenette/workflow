@@ -9,6 +9,8 @@ on:
       deploy_application:    { type: boolean, default: false }
       deploy_infrastructure: { type: boolean, default: false }
       iac_tool:              { type: string, default: terraform } # quotes needed?
+    secrets:
+      SONAR_TOKEN:          { required: true }
 
 jobs:
   lint_code:
