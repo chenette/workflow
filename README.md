@@ -22,7 +22,7 @@ jobs:
     uses: chenette/workflow/.github/workflows/main.yml@main
     with:
       environment: <your-environment-here>
-      application_type: <your-application-language-here>
+      programming_language: <your-application-language-here>
       ...
 ```
 

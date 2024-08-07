@@ -2,7 +2,7 @@ on:
   workflow_call:
     inputs:
       environment:           { required: true, type: string }
-      application_type:      { required: true, type: string }
+      programming_language:  { required: true, type: string }
       lint_code:             { type: boolean, default: true }
       scan_code:             { type: boolean, default: true }
       build_application:     { type: boolean, default: true }
@@ -10,26 +10,43 @@ on:
       deploy_infrastructure: { type: boolean, default: false }
       iac_tool:              { type: string, default: terraform } # quotes needed?
     secrets:
-      SONAR_TOKEN:          { required: true } # *** ARE ALL OF THESE NEEDED?
+      SONAR_TOKEN:          { } # *** ARE ALL OF THESE NEEDED?
 
 jobs:
-  lint_code:
+  lint:
     if: inputs.lint_code
     uses: ./.github/workflows/lint-code.yml
+
+    # runs-on: ubuntu-latest
+    # steps:
+    #   - uses: actions/checkout@v4
+    #     with:
+    #       fetch-depth: 0
+    #   - uses: super-linter/super-linter@v6
+    #     env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   scan_code:
     if: inputs.scan_code
     uses: ./.github/workflows/scan-code.yml
     secrets:
        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # *** ARE ALL OF THESE NEEDED?
-  
+    # runs-on: ubuntu-latest
+    # steps:
+    #   - uses: actions/checkout@v4
+    #     with:
+    #       fetch-depth: 0
+    #   - uses: sonarsource/sonarcloud-github-action@v2
+    #     env:
+    #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   #compile_code? or build_application?
   build_application:
     if: inputs.build_application
-    uses: ./.github/workflows/build-application.yml
-    with:
-      environment: ${{ inputs.environment }}
-      application_type: ${{ inputs.application_type }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4
 
   deploy_infrastructure:
     if: inputs.deploy_infrastructure

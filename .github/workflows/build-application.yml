@@ -2,7 +2,7 @@ on:
   workflow_call:
     inputs:
       environment:           { required: true, type: string }
-      application_type:      { type: string }
+      programming_language:      { type: string }
 
 jobs:  
   build_application:

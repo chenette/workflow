@@ -1,7 +1,7 @@
 on:
   workflow_call:
     secrets:
-      SONAR_TOKEN:          { required: true } # *** ARE ALL OF THESE NEEDED?
+      SONAR_TOKEN: { required: true } # *** ARE ALL OF THESE NEEDED?
 
 jobs:
   scan_code:
